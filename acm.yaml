@@ -1,8 +1,8 @@
 ## Copyright 2022 Green River IT (GreenRiverIT.com) as described in LICENSE.txt distributed with this project on GitHub.  
 ## Start at https://github.com/AgileCloudInstitute?tab=repositories    
 
-#Start cf-demo system
-cf-demo:
+#Start custom-demo system
+custom-demo:
   keysDir: $Default
   cloud: aws
   organization: a1b2c
@@ -13,8 +13,9 @@ cf-demo:
     ownerName: name-of-owner
   foundation:
     instanceName: custom
-    templateName: aws-building-blocks/cf/foundation.json
-    controller: $customController.path/to/program
+    templateName: aws-building-blocks/customTemplates/sample.template.json
+    controller: $customController.aws-building-blocks/controllers/customController.py
+    controllerCommand: python $location
     preprocessor: 
       locationOn: aws-building-blocks/scripts/hello1.py
       commandOn: python $location
@@ -29,11 +30,10 @@ cf-demo:
       vpcCIDR: 10.0.0.0/16
     images: 
       - instanceName: custom-image
-        templateName: aws-building-blocks/cf/image.json
-        controller: $customController.path/to/program
+        templateName: aws-building-blocks/customTemplates/sample.template.json
+        controller: $customController.aws-building-blocks/controllers/customController.py
+        controllerCommand: python $location
         mappedVariables: 
-          VpcId: $customFunction.foundationOutput.VpcId
-          RouteTableId: $customFunction.foundationOutput.RouteTableId
           KeyName: $keys.KeyName
           SSHLocation: 0.0.0.0/0
           InstanceType: t2.small
@@ -43,8 +43,9 @@ cf-demo:
     subnetsWithScaleSet:
       instances:
         - instanceName: custom-scaleset
-          templateName: aws-building-blocks/cf/ec2withcustomimg.json
-          controller: $customController.path/to/program
+          templateName: aws-building-blocks/customTemplates/sample.template.json
+          controller: $customController.aws-building-blocks/controllers/customController.py
+          controllerCommand: python $location
           imageName: cf-image-demo
           preprocessor: 
             locationOn: aws-building-blocks/scripts/hello1.py
@@ -57,11 +58,8 @@ cf-demo:
             locationOff: aws-building-blocks/scripts/hello4.py
             commandOff: python $location
           mappedVariables:
-            VpcId: $customFunction.foundationOutput.VpcId
-            RouteTableId: $customFunction.foundationOutput.RouteTableId
             KeyName: $keys.KeyName
             InstanceType: t2.small
             SSHLocation: 0.0.0.0/0
-            ImageId: $customFunction.mostRecentImage.cf-image-demo
             AvailabilityZone: us-west-2a
             CidrBlock: 10.0.0.0/24
