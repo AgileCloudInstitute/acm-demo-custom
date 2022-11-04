@@ -33,7 +33,7 @@ dependencies:
       - url: https://releases.hashicorp.com/packer/1.7.3/packer_1.7.3_SHA256SUMS
       - url: https://releases.hashicorp.com/packer/1.7.3/packer_1.7.3_SHA256SUMS.sig
 source:
-  - instanceName: aws-building-blocks
+  - instanceName: acm-custom-controller
     repo: https://github.com/AgileCloudInstitute/acm-custom-controller.git
     branch: main
   - instanceName: acm-system-templates
