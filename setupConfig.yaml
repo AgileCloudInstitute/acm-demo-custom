@@ -13,6 +13,8 @@ source:
   - instanceName: acm-custom-controller
     repo: https://github.com/AgileCloudInstitute/acm-custom-controller.git
     branch: main
+    public: false
   - instanceName: acm-system-templates
     repo: https://github.com/AgileCloudInstitute/acm-system-templates.git
     branch: main
+    public: false
